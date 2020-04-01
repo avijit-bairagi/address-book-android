@@ -1,13 +1,20 @@
-package com.avijit.addressbook.dto;
+package com.avijit.addressbook.entity;
+
+import java.io.Serializable;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class AddressPostDTO {
+public class Contact implements Serializable {
+
+    private Long id;
 
     private String name;
+
     private String address;
+
     private String phoneNumber;
+
 }

@@ -34,7 +34,7 @@ public class RetrofitClient {
         return retrofitClient;
     }
 
-    public Api getApi() {
-        return retrofit.create(Api.class);
+    public ContactApi getApi() {
+        return retrofit.create(ContactApi.class);
     }
 }
