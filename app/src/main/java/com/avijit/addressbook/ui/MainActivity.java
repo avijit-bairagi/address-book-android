@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         messageTextView = findViewById(R.id.message_view_id);
         recyclerView = findViewById(R.id.contact_recycler_view_id);
 
-         pullToRefresh = findViewById(R.id.pullToRefresh);
+        pullToRefresh = findViewById(R.id.pullToRefresh);
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
@@ -63,12 +63,9 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        pullToRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                getContactsFromServer();
-                pullToRefresh.setRefreshing(false);
-            }
+        pullToRefresh.setOnRefreshListener(() -> {
+            getContactsFromServer();
+            pullToRefresh.setRefreshing(false);
         });
 
         getContactsFromServer();
@@ -107,32 +104,26 @@ public class MainActivity extends AppCompatActivity {
                                 if (progressDialog.isShowing())
                                     progressDialog.dismiss();
                             }
-                        } else {
+                        } else
                             handleError(apiResponse.getMessage());
-                        }
-                    } else {
-                        handleError(response.message());
-                    }
 
+                    } else
+                        handleError(response.message());
                 }
 
                 @Override
                 public void onFailure(Call<ApiResponse> call, Throwable t) {
-
                     handleError(t.getMessage());
-
                 }
             });
         } else {
             handleError("No internet connection!\nPlease pull down to refresh.");
         }
-
-
     }
 
     private void handleError(String message) {
 
-        if(progressDialog.isShowing())
+        if (progressDialog.isShowing())
             progressDialog.dismiss();
 
         Log.e(TAG, "errorMessage= " + message);

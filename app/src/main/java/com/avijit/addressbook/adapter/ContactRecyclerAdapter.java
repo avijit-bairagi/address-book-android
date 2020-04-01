@@ -10,10 +10,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.avijit.addressbook.ui.ContactActionActivity;
 import com.avijit.addressbook.R;
 import com.avijit.addressbook.common.Constants;
 import com.avijit.addressbook.entity.Contact;
+import com.avijit.addressbook.ui.ContactActionActivity;
 import com.google.gson.Gson;
 
 import java.util.List;

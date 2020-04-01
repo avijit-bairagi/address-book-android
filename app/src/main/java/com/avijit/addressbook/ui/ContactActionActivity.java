@@ -50,7 +50,6 @@ public class ContactActionActivity extends AppCompatActivity {
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Submitting data to server...");
 
-
         updateUI();
 
         saveOrUpdateBtn.setOnClickListener(v -> {
@@ -115,7 +114,6 @@ public class ContactActionActivity extends AppCompatActivity {
             phoneNumberEditText.setError("Phone number must not be less than 5 char.");
             return false;
         }
-
         return true;
     }
 
@@ -130,12 +128,12 @@ public class ContactActionActivity extends AppCompatActivity {
                     if (response.body().getCode().equalsIgnoreCase(Constants.API_SUCCESS_CODE)) {
                         Toast.makeText(ContactActionActivity.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
                         goToHomeActivity();
-                    } else {
+                    } else
                         handleError(response.body().getMessage());
-                    }
-                } else {
+
+                } else
                     handleError(response.message());
-                }
+
             }
 
             @Override
@@ -153,15 +151,15 @@ public class ContactActionActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
                 if (response.isSuccessful()) {
+
                     if (response.body().getCode().equalsIgnoreCase(Constants.API_SUCCESS_CODE)) {
                         Toast.makeText(ContactActionActivity.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
                         goToHomeActivity();
-                    } else {
+
+                    } else
                         handleError(response.body().getMessage());
-                    }
-                } else {
+                } else
                     handleError(response.message());
-                }
             }
 
             @Override
@@ -172,7 +170,7 @@ public class ContactActionActivity extends AppCompatActivity {
     }
 
     private void handleError(String message) {
-        if(progressDialog.isShowing())
+        if (progressDialog.isShowing())
             progressDialog.dismiss();
         Log.e(TAG, "errorMessage= " + message);
         Toast.makeText(ContactActionActivity.this, message, Toast.LENGTH_SHORT).show();
